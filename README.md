@@ -7,7 +7,7 @@ https://ffmc8ef2me.apifox.cn（密码 0413）
 https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen=VGfIpIzoXjiBiI #校园组队小程序原型-分享
 
 ## 项目进度
-
+https://docs.qq.com/sheet/DYUxzcUxBTFRLVGps?tab=BB08J2
 
 ## 后端启动
 1. 导入 IDEA，等待 Maven 下载依赖
