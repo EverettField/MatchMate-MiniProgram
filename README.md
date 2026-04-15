@@ -9,6 +9,9 @@ https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen
 ## 项目进度
 https://docs.qq.com/sheet/DYUxzcUxBTFRLVGps?tab=BB08J2
 
+##数据库设计
+https://docs.qq.com/sheet/DYWxBdXBQamRYR2du?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
+
 ## 后端启动
 1. 导入 IDEA，等待 Maven 下载依赖
 2. 创建 MySQL 数据库 team_db，执行 schema.sql
