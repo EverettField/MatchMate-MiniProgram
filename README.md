@@ -7,7 +7,7 @@ https://ffmc8ef2me.apifox.cn（密码 0413）
 ## 原型设计
 https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen=VGfIpIzoXjiBiI #校园组队小程序原型-分享
 
-##功能清单
+## 功能清单
 https://docs.qq.com/doc/DYVZYU0JzYk1SVUJp?opennew=1
 
 ## 数据库设计
