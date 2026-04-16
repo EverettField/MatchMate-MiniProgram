@@ -1,5 +1,30 @@
 # 校园组队匹配小程序
 
+## 项目简介
+面向软件学院学生的组队工具，区分「竞赛」与「课业」需求，基于技能标签智能推荐。
+
+## 技术栈
+- 后端：Spring Boot 2.7 + MyBatis-Plus + MySQL + JWT
+- 前端：微信小程序原生框架
+
+## 团队成员
+- 田永泰（负责人）
+- 孙照轩（后端）
+- 常顺恺（前端）
+
+## 快速开始
+
+### 后端
+1. 导入项目到 IDEA（Maven 项目）
+2. 创建 MySQL 数据库 `team_db`，执行 `src/main/resources/schema.sql`
+3. 修改 `application.yml` 中的数据库密码
+4. 运行 `TeamApplication.java`
+
+### 前端
+1. 在微信开发者工具中导入 `miniapp` 文件夹（前端同学需自行创建）
+2. 配置 AppID（个人主体）
+3. 开发阶段勾选“不校验合法域名”
+
 ## 接口文档
 https://ffmc8ef2me.apifox.cn（密码 0413）
 2026.4.16 第三次更新
@@ -24,16 +49,3 @@ https://docs.qq.com/sheet/DYVBtWnp5d2FTdGpO?isNewEmptyDoc=1&no_promotion=1&is_bl
 
 ## Bug清单
 https://docs.qq.com/sheet/DYXNhaG9KTnREaGtB?aidPos=list&isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
-
-## 后端启动
-1. 导入 IDEA，等待 Maven 下载依赖
-2. 创建 MySQL 数据库 team_db，执行 schema.sql
-3. 修改 application.yml 中的数据库密码
-4. 运行 TeamApplication.java
-5. 访问 http://localhost:8080/api/team/recommend 测试
-
-## 前端启动
-1. 下载微信开发者工具
-2. 导入 miniapp 文件夹
-3. 在 project.config.json 中填写自己的 AppID
-4. 勾选“不校验合法域名”（开发阶段）
