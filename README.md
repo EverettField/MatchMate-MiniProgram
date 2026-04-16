@@ -2,6 +2,7 @@
 
 ## 接口文档
 https://ffmc8ef2me.apifox.cn（密码 0413）
+2026.4.16 第三次更新
 
 ## 原型设计
 https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen=VGfIpIzoXjiBiI #校园组队小程序原型-分享
