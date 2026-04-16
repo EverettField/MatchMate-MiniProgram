@@ -29,11 +29,5 @@ hs_err_pid*
 # Maven target
 target/
 
-# VS Code (如果使用)
-.vscode/
-
-# macOS 系统文件
-.DS_Store
-
 # Windows 系统文件
 Thumbs.db
