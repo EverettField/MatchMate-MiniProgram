@@ -19,6 +19,12 @@ https://docs.qq.com/sheet/DYUxzcUxBTFRLVGps?tab=BB08J2
 ## 会议纪要
 https://docs.qq.com/doc/DYUFxRHVyZ2Z3c2Fi?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1
 
+## 测试用例
+https://docs.qq.com/sheet/DYVBtWnp5d2FTdGpO?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
+
+## Bug清单
+https://docs.qq.com/sheet/DYXNhaG9KTnREaGtB?aidPos=list&isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
+
 ## 后端启动
 1. 导入 IDEA，等待 Maven 下载依赖
 2. 创建 MySQL 数据库 team_db，执行 schema.sql
