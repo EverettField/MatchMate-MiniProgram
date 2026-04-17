@@ -27,10 +27,10 @@
 
 ## 接口文档
 https://ffmc8ef2me.apifox.cn（密码 0413）
-2026.4.16 第三次更新
+2026.4.16 第三次（最后一次）更新
 
-## 原型设计
-https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen=VGfIpIzoXjiBiI #校园组队小程序原型-分享
+## 原型设计（初稿）
+https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen=VGfIpIzoXjiBiI
 
 ## 功能清单
 https://docs.qq.com/doc/DYVZYU0JzYk1SVUJp?opennew=1
@@ -38,7 +38,7 @@ https://docs.qq.com/doc/DYVZYU0JzYk1SVUJp?opennew=1
 ## 数据库设计
 https://docs.qq.com/sheet/DYWxBdXBQamRYR2du?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
 
-## 项目进度（对照每个阶段自身进度，自己将状态修改为已完成 || 该表还未完成，我先睡一觉再）
+## 项目进度（对照每个阶段自身的进度，自己将状态修改为已完成 || 该表还未完成，我先睡一觉再）
 https://docs.qq.com/sheet/DYVpBbWJVYk9FRWZU?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
 
 ## 会议纪要
