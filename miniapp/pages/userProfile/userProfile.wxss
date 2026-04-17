@@ -1,0 +1,266 @@
+/* pages/userProfile/userProfile.wxss */
+.page {
+  min-height: 100vh;
+  background: #f4f5f8;
+  padding-bottom: 140rpx;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 30rpx 24rpx 18rpx;
+}
+
+.screen-title {
+  font-size: 46rpx;
+  font-weight: 900;
+  color: #1d2334;
+}
+
+.progress-text {
+  font-size: 28rpx;
+  color: #99a2b6;
+}
+
+.content {
+  padding: 0 18rpx 22rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 34rpx;
+  padding: 28rpx;
+  margin-bottom: 22rpx;
+  box-shadow: 0 14rpx 36rpx rgba(36, 63, 115, 0.08);
+}
+
+.profile-card {
+  padding-bottom: 24rpx;
+}
+
+.profile-card-top {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 22rpx;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 124rpx;
+  height: 124rpx;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6rpx solid #ffffff;
+  box-shadow: 0 20rpx 52rpx rgba(42, 91, 160, 0.12);
+  background: #eef2f7;
+}
+
+.avatar-badge {
+  position: absolute;
+  right: -4rpx;
+  bottom: -4rpx;
+  width: 54rpx;
+  height: 54rpx;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 24rpx rgba(45, 74, 116, 0.14);
+}
+
+.badge-icon {
+  font-size: 28rpx;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.label-secondary {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #94a3b8;
+  margin-bottom: 10rpx;
+}
+
+.profile-name {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #1e2839;
+  line-height: 1.2;
+  margin-bottom: 10rpx;
+}
+
+.profile-school {
+  font-size: 26rpx;
+  color: #8b97ab;
+}
+
+.profile-card-divider {
+  height: 1rpx;
+  background: #eef0f5;
+  margin-bottom: 22rpx;
+}
+
+.profile-card-body {
+  display: flex;
+  gap: 18rpx;
+}
+
+.field-item {
+  flex: 1;
+}
+
+.compact-field {
+  background: #f9fbff;
+  border-radius: 30rpx;
+  padding: 22rpx 18rpx;
+}
+
+.field-label {
+  display: block;
+  font-size: 24rpx;
+  color: #99a3ba;
+  margin-bottom: 14rpx;
+}
+
+.field-value,
+.field-input {
+  width: 100%;
+  min-height: 86rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #e7eef8;
+  font-size: 28rpx;
+  color: #243145;
+  padding: 0 24rpx;
+  line-height: 86rpx;
+  box-sizing: border-box;
+}
+
+.field-input {
+  line-height: 40rpx;
+}
+
+.tag-card,
+.schedule-card {
+  padding-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  color: #151f34;
+  font-weight: 800;
+  margin-bottom: 22rpx;
+}
+
+.skill-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.skill-pill {
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  color: #6d7790;
+  background: #f3f5ff;
+  border: 1rpx solid #e3e8fb;
+}
+
+.skill-pill-active {
+  background: #1bc361;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.skill-pill-add {
+  color: #a7afc6;
+}
+
+.schedule-table {
+  display: grid;
+  gap: 10rpx;
+}
+
+.schedule-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.header-row {
+  margin-bottom: 10rpx;
+}
+
+.schedule-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #6d7790;
+}
+
+.header-cell,
+.label-cell {
+  width: 100rpx;
+  min-width: 100rpx;
+  height: 76rpx;
+  border-radius: 26rpx;
+  background: transparent;
+}
+
+.day-cell {
+  flex: 1;
+  height: 76rpx;
+  background: #f3f6ff;
+  border-radius: 26rpx;
+}
+
+.day-cell.day-red {
+  color: #f04545;
+}
+
+.day-cell.day-sun {
+  color: #a2adc6;
+}
+
+.slot-cell {
+  flex: 1;
+  height: 76rpx;
+  border-radius: 22rpx;
+  background: #f3f6ff;
+}
+
+.slot-active {
+  background: #1bc361;
+}
+
+.schedule-note {
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  color: #98a4b8;
+}
+
+.actions {
+  margin: 0 0 32rpx;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 108rpx;
+  border-radius: 56rpx;
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
+}
+

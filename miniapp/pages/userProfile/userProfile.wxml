@@ -1,0 +1,113 @@
+<view class="page">
+  <view class="profile-header">
+    <text class="screen-title">编辑资料</text>
+    <text class="progress-text">已完成 {{completionPercent}}%</text>
+  </view>
+
+  <scroll-view class="content" scroll-y="true" scroll-with-animation="true">
+    <view class="card profile-card">
+      <view class="profile-card-top">
+        <view class="avatar-wrap" bindtap="onChooseAvatar">
+          <image class="avatar" src="{{avatar}}" mode="aspectFill" />
+          <view class="avatar-badge">
+            <text class="badge-icon">📷</text>
+          </view>
+        </view>
+        <view class="profile-info">
+          <text class="label-secondary">微信昵称</text>
+          <text class="profile-name">{{nickname || 'Jason.Lin'}}</text>
+          <text class="profile-school">{{school || '未填写学校'}}</text>
+        </view>
+      </view>
+
+      <view class="profile-card-divider"></view>
+
+      <view class="profile-card-body">
+        <view class="field-item compact-field">
+          <text class="field-label">当前年级</text>
+          <picker mode="selector" range="{{grades}}" value="{{gradeIndex}}" bindchange="onGradeChange">
+            <view class="field-value">{{grades[gradeIndex] || '请选择年级'}}</view>
+          </picker>
+        </view>
+        <view class="field-item compact-field">
+          <text class="field-label">所属专业</text>
+          <input
+            class="field-value field-input"
+            value="{{major}}"
+            placeholder="计算机科学"
+            placeholder-style="color:#94a3b8"
+            data-field="major"
+            bindinput="onInput"
+          />
+        </view>
+      </view>
+    </view>
+
+    <view class="card tag-card">
+      <text class="section-title">技能标签库</text>
+      <view class="skill-wrap">
+        <block wx:for="{{skills}}" wx:key="name">
+          <view
+            class="skill-pill {{item.selected ? 'skill-pill-active' : ''}} {{item.name === '+ 自定义' ? 'skill-pill-add' : ''}}"
+            data-index="{{index}}"
+            bindtap="onToggleSkill"
+          >
+            {{item.name}}
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view wx:if="{{showCustomSkillModal}}" class="modal-mask" bindtap="onCancelCustomSkill"></view>
+    <view wx:if="{{showCustomSkillModal}}" class="modal-dialog" catchtap="noop">
+      <text class="modal-title">添加自定义技能</text>
+      <input
+        class="modal-input"
+        value="{{customSkillInput}}"
+        placeholder="请输入技能名称"
+        placeholder-style="color:#c8c9d3"
+        bindinput="onCustomSkillInput"
+      />
+      <view class="modal-actions">
+        <button class="modal-btn cancel" bindtap="onCancelCustomSkill">取消</button>
+        <button class="modal-btn confirm" bindtap="onConfirmCustomSkill">添加</button>
+      </view>
+    </view>
+
+    <view class="card schedule-card">
+      <text class="section-title">空闲时间（周一至周日）</text>
+      <view class="schedule-table">
+        <view class="schedule-row header-row">
+          <view class="schedule-cell header-cell"></view>
+          <view
+            class="schedule-cell day-cell {{index === 5 ? 'day-red' : index === 6 ? 'day-sun' : ''}}"
+            wx:for="{{weekdays}}"
+            wx:key="{{index}}"
+            data-index="{{index}}"
+          >
+            {{item}}
+          </view>
+        </view>
+        <block wx:for="{{periods}}" wx:key="{{index}}">
+          <view class="schedule-row">
+            <view class="schedule-cell label-cell">{{item}}</view>
+            <block wx:for="{{weekdays}}" wx:key="{{idx}}">
+              <view
+                class="schedule-cell slot-cell {{timeSlots[index * 7 + idx] ? 'slot-active' : ''}}"
+                data-index="{{index * 7 + idx}}"
+                bindtap="onToggleSlot"
+              ></view>
+            </block>
+          </view>
+        </block>
+      </view>
+      <text class="schedule-note">* 绿色区域代表当前空闲</text>
+    </view>
+
+    <view class="actions">
+      <button class="btn-submit common-btn common-btn-primary" bindtap="onSave">保存资料</button>
+    </view>
+  </scroll-view>
+
+  <tab-bar current="2"></tab-bar>
+</view>

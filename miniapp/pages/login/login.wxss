@@ -1,0 +1,59 @@
+/* pages/login/login.wxss */
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4f7ff 0%, #eef2f7 100%);
+  padding: 80rpx 24rpx 160rpx;
+  box-sizing: border-box;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: #1f2c4b;
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  font-size: 30rpx;
+  color: #64748b;
+}
+
+.auth-card {
+  padding: 44rpx 32rpx 40rpx;
+  margin: 0 20rpx;
+}
+
+.input-group {
+  margin-bottom: 30rpx;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  color: #4b5563;
+}
+
+.input {
+  width: 100%;
+  height: 92rpx;
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 26rpx;
+  background: #f8fafc;
+  color: #243145;
+}
+
+.common-btn {
+  margin-top: 20rpx;
+}
+
+.common-btn-secondary {
+  margin-top: 18rpx;
+}
