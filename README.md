@@ -38,7 +38,7 @@ https://docs.qq.com/doc/DYVZYU0JzYk1SVUJp?opennew=1
 ## 数据库设计
 https://docs.qq.com/sheet/DYWxBdXBQamRYR2du?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
 
-## 项目进度（对照每个阶段自身的进度，自己将状态修改为已完成 || 该表还未完成）
+## 项目进度（对照每个阶段自身的进度，自己将状态修改为已完成，然后在群里说一声）
 https://docs.qq.com/sheet/DYVpBbWJVYk9FRWZU?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
 
 ## 会议纪要
