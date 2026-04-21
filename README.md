@@ -44,7 +44,7 @@ https://docs.qq.com/sheet/DYVpBbWJVYk9FRWZU?isNewEmptyDoc=1&no_promotion=1&is_bl
 ## 会议纪要
 https://docs.qq.com/doc/DYUFxRHVyZ2Z3c2Fi?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1
 
-## 测试用例
+## 联调测试用例
 https://docs.qq.com/sheet/DYVBtWnp5d2FTdGpO?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
 
 ## Bug清单
