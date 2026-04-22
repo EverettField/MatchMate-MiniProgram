@@ -15,3 +15,10 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+logging:
+  level:
+    # 这里填你项目的根包名，确保你的 Controller 日志能打印出来
+    com.team: info
+  file:
+    # 日志文件保存的名字和路径（会在项目根目录下生成 logs 文件夹）
+    name: logs/team-project.log
