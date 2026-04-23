@@ -25,6 +25,9 @@
 2. 配置 AppID（个人主体）
 3. 开发阶段勾选“不校验合法域名”
 
+## 需求文档
+https://docs.qq.com/doc/DYVRBVWhqQm9YSVJO?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1
+
 ## 接口文档
 https://ffmc8ef2me.apifox.cn  
 （密码 0413）
