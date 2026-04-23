@@ -75,58 +75,7 @@ Page({
   // 获取模拟数据
   getMockTeams() {
     return [
-      {
-        id: '1',
-        title: '2026大学生数学建模竞赛',
-        category: '学科竞赛',
-        tags: ['MATLAB', '论文写作', '建模算法'],
-        matchPercentage: 98,
-        school: '计算机学院',
-        creator: '林嘉欣',
-        description: '准备参加2026年大学生数学建模竞赛，寻找擅长编程和数学的队友。',
-        requirements: '熟悉MATLAB，有建模经验优先',
-        createTime: '2026-04-01',
-        status: '招募中'
-      },
-      {
-        id: '2',
-        title: '校园生活助手小程序开发',
-        category: '互联网+',
-        tags: ['前端开发', 'UI设计'],
-        matchPercentage: 92,
-        school: '软件工程',
-        creator: '陈子安',
-        description: '正在开发一个校园生活服务小程序，欢迎有前端经验的同学加入。',
-        requirements: '熟悉微信小程序开发，有UI设计经验更好',
-        createTime: '2026-03-28',
-        status: '招募中'
-      },
-      {
-        id: '3',
-        title: '西藏毕业旅行搭子(招5人)',
-        category: '户外运动',
-        tags: ['驾驭技术', '摄影摄像'],
-        matchPercentage: 89,
-        school: '艺术学院',
-        creator: '王泽雨',
-        description: '毕业旅行团队招募，计划西藏路线，欢迎热爱摄影和徒步的同学。',
-        requirements: '热爱旅行，能承担部分费用',
-        createTime: '2026-03-20',
-        status: '招募中'
-      },
-      {
-        id: '4',
-        title: '周日图书馆六楼考研刷题',
-        category: '考证考研',
-        tags: ['英语二', '数学一'],
-        matchPercentage: 85,
-        school: '经济学院',
-        creator: '刘晨',
-        description: '周末一起去图书馆复习考研，欢迎目标院校明确的同学加入。',
-        requirements: '目标考研院校明确，每周至少2次到场',
-        createTime: '2026-03-18',
-        status: '招募中'
-      }
+
     ];
   },
 

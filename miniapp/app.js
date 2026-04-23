@@ -9,9 +9,9 @@ App({
       wx.setStorageSync('applications', []);
     }
   },
-
   globalData: {
     userInfo: null,
-    token: null
+    token: null,
+    baseUrl: 'http://localhost:8080'   // 添加后端接口地址
   }
 })
