@@ -26,8 +26,10 @@
 3. 开发阶段勾选“不校验合法域名”
 
 ## 接口文档
-https://ffmc8ef2me.apifox.cn  （密码 0413）
-2026.4.16 第三次（最后一次）更新
+https://ffmc8ef2me.apifox.cn  
+（密码 0413）
+2026.4.16 第三次更新
+2026.4.23 第四次（最后一次）更新
 
 ## 原型设计（初稿）
 https://modao.cc/proto/3XHskHUjtdfgtbOjIISdFW/sharing?view_mode=read_only&screen=VGfIpIzoXjiBiI
