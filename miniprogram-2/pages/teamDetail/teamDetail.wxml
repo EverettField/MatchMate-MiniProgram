@@ -1,0 +1,80 @@
+<!-- pages/teamDetail/teamDetail.wxml -->
+<view class="page">
+  <scroll-view class="content" scroll-y="true" scroll-with-animation="true">
+    <view class="card detail-card" wx:if="{{team}}">
+     
+      
+      <!-- 标题 -->
+      <text class="project-title">{{team.title}}</text>
+       <!-- 类型标签 -->
+      <view class="type-badge {{team.type === 'contest' ? 'type-contest' : 'type-course'}}">
+        {{team.type === 'contest' ? '竞赛组队' : '课业组队'}}
+      </view>
+      <!-- 项目名称 -->
+      <text class="project-name" wx:if="{{team.projectName}}">{{team.projectName}}</text>
+      
+      <!-- 技能标签 -->
+      <view class="tag-row">
+        <block wx:for="{{team.requiredSkills || team.tags || team.skills || []}}" wx:key="{{index}}">
+          <text class="tag">{{item}}</text>
+        </block>
+      </view>
+
+      <!-- 状态面板 -->
+      <view class="status-panel">
+        <view class="status-item">
+          <text class="status-label">需要人数</text>
+          <text class="status-value">{{team.neededCount || team.maxNum || 1}}人</text>
+        </view>
+        <view class="divider"></view>
+        <view class="status-item">
+          <text class="status-label">当前人数</text>
+          <text class="status-value">{{team.currentNum || 1}}人</text>
+        </view>
+        <view class="divider"></view>
+        <view class="status-item">
+          <text class="status-label">匹配度</text>
+          <text class="status-value status-value-highlight">{{team.matchPercentage || 0}}%</text>
+        </view>
+      </view>
+
+      <!-- 创建者信息 -->
+      <view class="creator-card">
+        <image class="avatar" src="{{team.creatorAvatar || '/images/default-avatar.svg'}}" mode="aspectFill" />
+        <view class="creator-info">
+          <text class="creator-name">{{team.creator}}</text>
+          <text class="creator-meta">{{team.school || '未填写学校'}}{{team.grade ? ' · ' + team.grade : ''}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 项目描述 -->
+    <view class="card desc-card" wx:if="{{team}}">
+      <text class="section-title">项目描述</text><view></view>
+      <text class="paragraph" decode="{{true}}">{{team.description}}</text>
+    </view>
+
+    <!-- 底部信息 -->
+    <view class="card footer-card" wx:if="{{team}}">
+      <view class="footer-row">
+        <view class="footer-item">
+          <text class="footer-label">发布时间</text>
+          <text class="footer-value">{{team.createTime}}</text>
+        </view>
+        <view class="footer-item">
+          <text class="footer-label">浏览量</text>
+          <text class="footer-value">{{team.views || 0}}次</text>
+        </view>
+      </view>
+      <text class="apply-note">"加入队伍需通过发布者审核"</text>
+      <button class="btn-action" bindtap="onCopyContact">复制微信号并申请</button>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!team}}">
+      <image class="empty-icon" src="/images/empty.svg" mode="aspectFit" />
+      <text class="empty-text">未找到该组队信息</text>
+      <button class="btn-back" bindtap="goBack">返回首页</button>
+    </view>
+  </scroll-view>
+</view>

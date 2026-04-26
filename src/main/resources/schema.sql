@@ -4,7 +4,7 @@ USE team_db;
 CREATE TABLE `user` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `openid` VARCHAR(64) NOT NULL UNIQUE,
-    `nickname` VARCHAR(50) DEFAULT '新用户',
+    `nickname` VARCHAR(50) DEFAULT '',
     `avatar` VARCHAR(255) DEFAULT '',
     `grade` VARCHAR(10) DEFAULT '',
     `major` VARCHAR(30) DEFAULT '',

@@ -26,9 +26,11 @@ public class UserService {
         return user;
     }
 
-    public void updateProfile(Long userId, String grade, String major, List<String> skills) {
+    // 正确的方法：参数顺序 + 名称完全正确
+    public void updateProfile(Long userId, String nickname, String grade, String major, List<String> skills) {
         User user = userMapper.selectById(userId);
         if (user != null) {
+            user.setNickname(nickname);
             user.setGrade(grade);
             user.setMajor(major);
             if (skills != null && !skills.isEmpty()) {

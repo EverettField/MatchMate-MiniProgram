@@ -1,0 +1,29 @@
+<!-- components/tabBar/tabBar.wxml -->
+<view class="tab-bar">
+  <view 
+    class="tab-item {{current === 0 ? 'active' : ''}}" 
+    bindtap="onTap" 
+    data-index="0"
+  >
+    <image class="tab-icon tansuo" src="/images/tab-tanSuo.svg" mode="aspectFit"/>
+    <text class="tab-text">探索</text>
+  </view>
+  
+  <view 
+    class="tab-item {{current === 1 ? 'active' : ''}}" 
+    bindtap="onTap" 
+    data-index="1"
+  >
+  <image class="tab-icon" src="/images/tab-faBu.svg" mode="aspectFit"/>
+    <text class="tab-text">发布</text>
+  </view>
+  
+  <view 
+    class="tab-item {{current === 2 ? 'active' : ''}}" 
+    bindtap="onTap" 
+    data-index="2"
+  >
+  <image class="tab-icon" src="/images/tab-woDe.svg" mode="aspectFit"/>
+    <text class="tab-text">我的</text>
+  </view>
+</view>

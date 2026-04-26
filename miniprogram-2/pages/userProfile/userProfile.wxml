@@ -1,0 +1,83 @@
+<view class="page">
+  <view class="profile-header">
+    <text class="screen-title">编辑资料</text>
+    <text class="progress-text">已完成 {{completionPercent}}%</text>
+  </view>
+
+  <scroll-view class="content" scroll-y="true" scroll-with-animation="true">
+    <view class="card profile-card">
+      <view class="profile-card-top">
+        <view class="avatar-wrap" bindtap="onChooseAvatar">
+          <image class="avatar" src="{{avatar}}" mode="aspectFill" />
+         
+        </view>
+        <view class="profile-info">
+          <text class="label-secondary">昵称</text>
+          <text class="profile-name">{{nickname || '未设置昵称'}}</text>
+          <text class="profile-school">{{school || '未填写学校'}}</text>
+        </view>
+      </view>
+
+      <view class="profile-card-divider"></view>
+
+      <view class="profile-card-body">
+        <view class="field-item compact-field">
+          <text class="field-label">年级</text>
+          <picker mode="selector" range="{{gradeOptions}}" value="{{gradeIndex}}" bindchange="onGradeChange">
+            <view class="field-value field-input">{{grade}}</view>
+          </picker>
+        </view>
+        <view class="field-item compact-field">
+          <text class="field-label">所属专业</text>
+          <picker mode="selector" range="{{majorOptions}}" value="{{majorIndex}}" bindchange="onMajorChange">
+            <view class="field-value field-input">{{major}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <!-- 新加-我的组队 -->
+    <view class="card my-team-card" bindtap="goToMyTeams">
+      <text class="section-title">我的组队</text>
+     <!-- 后面再搞 -->
+      <!-- <text class="my-team-count">{{myTeams.length}}个组队</text> -->
+      <text class="tubiao"> ></text>
+    </view>
+    <view class="card tag-card">
+      <text class="section-title">技能标签库</text>
+      <view class="skill-wrap">
+        <block wx:for="{{skills}}" wx:key="name">
+          <view class="skill-pill {{item.selected ? 'skill-pill-active' : ''}} {{item.name === '+ 自定义' ? 'skill-pill-add' : ''}}" data-index="{{index}}" bindtap="onToggleSkill">
+            {{item.name}}
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="card schedule-card">
+      <text class="section-title">空闲时间（周一至周日）</text>
+      <view class="schedule-table">
+        <view class="schedule-row header-row">
+          <view class="schedule-cell header-cell"></view>
+          <view class="schedule-cell day-cell {{index === 5 ? 'day-red' : index === 6 ? 'day-sun' : ''}} {{isDayFull[index] ? 'day-full' : ''}}" wx:for="{{weekdays}}" wx:for-index="dayIndex" wx:key="{{dayIndex}}" data-day="{{dayIndex}}" bindtap="onToggleDay">
+            {{item}}
+          </view>
+        </view>
+        <block wx:for="{{periods}}" wx:for-item="period" wx:for-index="periodIndex" wx:key="period">
+          <view class="schedule-row">
+            <view class="schedule-cell label-cell">{{period}}</view>
+            <block wx:for="{{weekdays}}" wx:for-item="day" wx:for-index="dayIndex" wx:key="day">
+              <view class="schedule-cell slot-cell {{timeSlots[periodIndex * 7 + dayIndex] ? 'slot-active' : ''}}" data-index="{{periodIndex * 7 + dayIndex}}" bindtap="onToggleSlot"></view>
+            </block>
+          </view>
+        </block>
+      </view>
+      <text class="schedule-note">* 绿色区域代表当前空闲</text>
+    </view>
+
+    <view class="actions">
+      <button class="btn-submit common-btn common-btn-primary" bindtap="onSave">保存资料</button>
+    </view>
+  </scroll-view>
+
+  <tab-bar current="2"></tab-bar>
+</view>

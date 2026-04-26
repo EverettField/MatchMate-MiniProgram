@@ -27,13 +27,21 @@ public class UserController {
         if (userId == null) {
             return Result.error(401, "token无效");
         }
+
+        String nickname = (String) body.get("nickname");
         String grade = (String) body.get("grade");
         String major = (String) body.get("major");
         List<String> skills = (List<String>) body.get("skills");
+
+        if (nickname == null || nickname.trim().isEmpty()) {
+            return Result.error(400, "昵称不能为空");
+        }
         if (grade == null || major == null || skills == null || skills.isEmpty()) {
             return Result.error(400, "年级、专业、技能不能为空");
         }
-        userService.updateProfile(userId, grade, major, skills);
+
+        // 调用正确的方法
+        userService.updateProfile(userId, nickname, grade, major, skills);
         return Result.success(null);
     }
 }

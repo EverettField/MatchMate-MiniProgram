@@ -1,0 +1,67 @@
+<!-- pages/teamRecommend/teamRecommend.wxml -->
+<view class="page container">
+  <view class="top-panel">
+   
+    <view class="search-bar">
+      <view class="search-box">
+      
+        <input
+          class="search-input"
+          placeholder="搜索项目、技能或同学"
+          value="{{searchKeyword}}"
+          bindinput="onSearch"
+        />
+      </view>
+    </view>
+  </view>
+
+  <view class="type-filter">
+    <view
+      class="type-item {{typeIndex === index ? 'active' : ''}}"
+      wx:for="{{typeFilters}}"
+      wx:key="index"
+      bindtap="onTypeChange"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <scroll-view class="team-list" scroll-y>
+    <view
+      class="team-card"
+      wx:for="{{filteredTeams}}"
+      wx:key="id"
+      bindtap="goToDetail"
+      data-id="{{item.id}}"
+    >
+      <view class="card-top">
+        <text class="card-title">{{item.title}}</text>
+        <view class="match-badge" wx:if="{{item.matchPercentage > -1}}">{{item.matchPercentage}}% 匹配</view>
+      </view>
+
+      <view class="tag-list">
+        <view class="tag-item" wx:for="{{item.tags}}" wx:key="*this">{{item}}</view>
+      </view>
+
+      <view class="card-meta">
+        <view class="avatar">
+          <image class="avatar-icon" src="{{item.creatorAvatar || '/images/avatar.svg'}}" mode="aspectFit" />
+        </view>
+        <view class="meta-text">
+          <text class="creator">{{item.creator}}</text>
+          <text class="school">{{item.school}}{{item.grade ? ' · ' + item.grade : ''}}</text>
+        </view>
+        <text class="meta-arrow">〉</text>
+      </view>
+    </view>
+
+    <!-- <view class="empty-state" wx:if="{{filteredTeams.length === 0 && !isLoading}}">
+      <image class="empty-icon" src="/images/empty.svg" mode="aspectFit" />
+      <text class="empty-text">暂无相关组队信息</text>
+      <button class="btn-create" bindtap="goToCreate">去发布</button>
+    </view> -->
+  </scroll-view>
+
+  <tab-bar current="0"></tab-bar>
+</view>

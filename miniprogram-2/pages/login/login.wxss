@@ -1,0 +1,109 @@
+/* pages/login/login.wxss */
+.page {
+  min-height: 100vh;
+  padding: 80rpx 30rpx 40rpx;
+  background: #f6f6f6;
+  box-sizing: border-box;
+
+
+}
+
+.auth-header {
+  text-align: center;
+  margin-top: 100rpx;
+}
+
+.title {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: #1f2c4b;
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  font-size: 30rpx;
+  color: #64748b;
+}
+
+.login-card {
+  background: #f6f6f6;
+  margin-top: 150rpx;
+  padding: 50rpx 30rpx 40rpx;
+}
+
+.avatar-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.avatar-placeholder {
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 10rpx;
+  border-radius: 70rpx;
+  border: 1rpx solid #a1a1a1;
+  background: #f0f0f0;
+  font-size: 64rpx;
+
+  line-height: 140rpx;
+  text-align: center;
+}
+
+.divider {
+  height: 1rpx;
+  background: #e5e5e5;
+  
+}
+
+.input-row {
+  display: flex;
+
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.input-label {
+  width: 120rpx;
+  color: #333333;
+  font-size: 30rpx;
+  margin-left: 50rpx;
+}
+
+.nickname-input {
+  flex: 1;
+  height: 64rpx;
+  font-size: 30rpx;
+  color: #666666;
+
+  border: none;
+  outline: none;
+}
+
+.nickname-input::placeholder {
+  color: #bbbbbb;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 50rpx;
+  background: #cccccc;
+  color: #ffffff;
+  border: none;
+  border-radius: 14rpx;
+  height: 90rpx;
+  font-size: 38rpx;
+  align-items: center;
+  text-align: center;
+}
+
+.login-button-active {
+  background: #1aad19 !important;
+  color: #ffffff !important;
+}
+
+.login-button-disabled {
+  background: #cccccc !important;
+  color: #ffffff !important;
+}
