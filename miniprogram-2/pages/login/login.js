@@ -4,33 +4,43 @@ const request = require('../../utils/request');
 Page({
   data: {
     nickname: '',
+    avatar: '',  // 用户选择的微信头像
     isAuthorizing: false,
     canLogin: false  // 是否有有效昵称
   },
 
-  /**
- * 页面加载时检查用户登录状态
- * 如果检测到已登录（存在用户信息和token），则重定向到推荐组队页面
- * 无参数
- * 无返回值
- */
   onLoad() {
     // 检查是否已登录
     const userInfo = wx.getStorageSync('userInfo');
     const token = wx.getStorageSync('token');
     if (userInfo && token) {
-      // 已登录，跳转到首页
       wx.reLaunch({ url: '/pages/teamRecommend/teamRecommend' });
     }
   },
 
-  // 输入用户名
+  // 选择微信头像
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail;
+    this.setData({ 
+      avatar: avatarUrl,
+      canLogin: this.data.nickname.trim().length > 0
+    });
+  },
+
+  // 输入昵称
   onInputNickname(e) {
     const nickname = e.detail.value;
     this.setData({ 
       nickname,
-      canLogin: nickname.trim().length > 0
+      canLogin: nickname.trim().length > 0 && this.data.avatar
     });
+  },
+
+  // 昵称输入完成（用于自动填充）
+  onNicknameBlur(e) {
+    if (!this.data.nickname && e.detail.value) {
+      this.setData({ nickname: e.detail.value });
+    }
   },
 
   // 微信授权登录
@@ -41,7 +51,6 @@ Page({
       return;
     }
 
-    // 必须输入昵称才能登录
     const nickname = this.data.nickname.trim();
     if (!nickname) {
       wx.showToast({ title: '请输入用户名', icon: 'none' });
@@ -52,9 +61,9 @@ Page({
     this.setData({ isAuthorizing: true });
     wx.showLoading({ title: '正在登录...' });
 
-    const avatar = userInfo.avatarUrl || '';
+    // 优先使用用户选择的微信头像，否则使用授权获取的头像
+    const avatar = this.data.avatar || userInfo.avatarUrl || '';
 
-    // 步骤1: 调用 wx.login 获取 code
     wx.login({
       success: loginRes => {
         const code = loginRes.code;
@@ -65,12 +74,14 @@ Page({
           return;
         }
 
-        // 步骤2-5: 发送 code 到后端，换取 userId、创建/查找用户、获取 token
-        console.log('准备登录，请求数据:', { code });
         request({
           url: '/api/login',
           method: 'POST',
-          data: { code }
+          data: { 
+            code,
+            avatar: avatar,
+            nickname: nickname
+          }
         }).then(res => {
           wx.hideLoading();
           this.setData({ isAuthorizing: false });
@@ -78,7 +89,6 @@ Page({
           if (res.code === 0 || res.code === 200) {
             const data = res.data || res;
             
-            // 保存用户信息和 token
             const savedUser = {
               userId: data.userId,
               nickname: data.nickname || nickname,

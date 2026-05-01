@@ -29,6 +29,7 @@ public class UserController {
         }
 
         String nickname = (String) body.get("nickname");
+        String avatar = (String) body.get("avatar");
         String grade = (String) body.get("grade");
         String major = (String) body.get("major");
         List<String> skills = (List<String>) body.get("skills");
@@ -41,7 +42,7 @@ public class UserController {
         }
 
         // 调用正确的方法
-        userService.updateProfile(userId, nickname, grade, major, skills);
+        userService.updateProfile(userId, nickname, avatar ,grade, major, skills);
         return Result.success(null);
     }
 }

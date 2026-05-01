@@ -34,7 +34,7 @@
         <view class="divider"></view>
         <view class="status-item">
           <text class="status-label">匹配度</text>
-          <text class="status-value status-value-highlight">{{team.matchPercentage || 0}}%</text>
+          <text class="status-value status-value-highlight">{{team.matchPercentage }}%</text>
         </view>
       </view>
 

@@ -85,15 +85,22 @@ public class TeamController {
         List<Map<String, Object>> list = teamService.getRecommendList(userId, type);
         return Result.success(list);
     }
-
     @GetMapping("/detail")
-    public Result<Map<String, Object>> detail(@RequestParam("teamId") Long teamId) {
-        Map<String, Object> data = teamService.getTeamDetail(teamId);  // 注意方法名是 getTeamDetail
+    public Result<Map<String, Object>> detail(
+            @RequestParam("teamId") Long teamId,
+            @RequestHeader(value = "Authorization", required = false) String authHeader) {
+        Long userId = null;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            userId = JwtUtil.getUserIdFromToken(token);
+        }
+        Map<String, Object> data = teamService.getTeamDetail(teamId, userId);
         if (data == null) {
             return Result.error(404, "组队不存在");
         }
         return Result.success(data);
     }
+
 
     @GetMapping("/my")
     public Result<List<Map<String, Object>>> myTeams(@RequestHeader("Authorization") String authHeader) {

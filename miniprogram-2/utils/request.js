@@ -1,6 +1,16 @@
 // 定义API基础URL
-const BASE_URL = "http://10.64.129.108:8080";
+const BASE_URL = "http://192.168.174.40:8080";
 
+/**
+ * 发起 HTTP 请求的封装函数，自动处理认证和统一响应处理
+ * @param {Object} options - 请求配置对象
+ * @param {string} options.url - 请求的相对路径
+ * @param {string} [options.method="GET"] - HTTP 请求方法
+ * @param {Object} [options.data={}] - 请求体数据
+ * @param {Object} [options.headers={}] - 请求头配置
+ * @returns {Promise<Object>} 返回 Promise 对象，成功时解析为响应数据
+ * @throws {Error} 当请求失败或 token 无效时抛出错误
+ */
 function request({url, method="GET", data={}, headers={}}) {
   return new Promise((resolve, reject) => {
     // 自动添加 Authorization

@@ -94,11 +94,22 @@ public class TeamService {
         return result;
     }
 
-    public Map<String, Object> getTeamDetail(Long teamId) {
+    public Map<String, Object> getTeamDetail(Long teamId, Long currentUserId) {
         Team team = teamMapper.selectById(teamId);
         if (team == null) {
             return null;
         }
+
+        // 计算当前用户与该组队的匹配度
+        String userSkills = "";
+        if (currentUserId != null) {
+            User user = userService.getById(currentUserId);
+            if (user != null && user.getSkills() != null) {
+                userSkills = user.getSkills();
+            }
+        }
+        int matchRate = MatchUtil.calculateMatchRate(userSkills, team.getRequiredSkills());
+
         User publisher = userService.getById(team.getUserId());
 
         Map<String, Object> data = new HashMap<>();
@@ -106,12 +117,12 @@ public class TeamService {
         data.put("type", team.getType());
         data.put("title", team.getTitle());
         data.put("description", team.getDescription());
-        // 将逗号分隔的字符串转为数组
         data.put("requiredSkills", Arrays.asList(team.getRequiredSkills().split(",")));
         data.put("neededCount", team.getNeededCount());
         data.put("currentCount", team.getCurrentCount());
         data.put("contact", team.getContact());
         data.put("status", team.getStatus());
+        data.put("matchRate", matchRate);  // 新增这行
         data.put("createTime", team.getCreateTime());
 
         Map<String, Object> userMap = new HashMap<>();

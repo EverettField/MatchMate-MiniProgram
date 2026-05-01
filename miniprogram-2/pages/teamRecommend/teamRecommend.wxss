@@ -144,15 +144,15 @@
   height: 70rpx;
   background: #eef2ff;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .avatar-icon {
-  width: 42rpx;
-  height: 42rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .meta-text {

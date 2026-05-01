@@ -80,8 +80,30 @@ Page({
       skills,
       timeSlots
     }, () => {
+      // 如果是云存储的 fileID，获取临时链接
+      const avatar = userInfo.avatar;
+      if (avatar && avatar.startsWith('cloud://')) {
+        this.loadAvatarUrl(avatar);
+      }
       this.updateCompletion();
       this.updateDayFullStatus();
+    });
+  },
+
+  // 获取云存储头像的临时链接
+  loadAvatarUrl(fileID) {
+    wx.cloud.getTempFileURL({
+      fileList: [fileID],
+      success: (res) => {
+        if (res.fileList[0].status === 0) {
+          this.setData({
+            avatar: res.fileList[0].tempFileURL
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('获取头像临时链接失败:', err);
+      }
     });
   },
 
@@ -200,8 +222,32 @@ Page({
       sourceType: ['album', 'camera'],
       success: (res) => {
         const tempFilePath = res.tempFiles[0].tempFilePath;
-        this.setData({
-          avatar: tempFilePath
+
+        wx.showLoading({ title: '上传中...' });
+
+        // 上传到云存储
+        const cloudPath = `avatars/${Date.now()}_${Math.random().toString(36).substr(2, 9)}.jpg`;
+        wx.cloud.uploadFile({
+          cloudPath: cloudPath,
+          filePath: tempFilePath,
+          success: (uploadRes) => {
+            wx.hideLoading();
+            this.setData({
+              avatar: uploadRes.fileID
+            });
+            wx.showToast({
+              title: '上传成功',
+              icon: 'success'
+            });
+          },
+          fail: (err) => {
+            wx.hideLoading();
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
       }
     });
@@ -266,7 +312,8 @@ Page({
           nickname: nickname.trim(),
           grade,
           major,
-          skills: selectedSkills
+          skills: selectedSkills,
+          avatar: avatar
         }
       }).then((res) => {
         wx.hideLoading();

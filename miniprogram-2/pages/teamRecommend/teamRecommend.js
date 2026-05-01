@@ -70,7 +70,7 @@ Page({
       if (res.data && res.data.length > 0) {
         // 过滤掉已下架的组队（status = "closed"）
         const activeTeams = res.data.filter(item => item.status !== 'closed');
-        
+
         const latestTeams = activeTeams.map(item => ({
           ...item,
           type: item.type || 'contest',
@@ -86,15 +86,18 @@ Page({
           grade: item.grade || item.user?.grade || '',
           major: item.major || item.user?.major || ''
         }));
-        
+
         // 更新本地缓存
         wx.setStorageSync('teams', res.data);
-        
+
         this.setData({ 
           teams: latestTeams,
           filteredTeams: latestTeams,
           isLoading: false
         });
+
+        // 处理云存储头像，获取临时链接
+        this.processCloudAvatars(latestTeams);
       } else {
         // 服务器没有数据，清空列表
         this.setData({ 
@@ -167,6 +170,53 @@ Page({
     wx.navigateTo({
       url: `/pages/teamDetail/teamDetail?id=${id}`
     });
+  },
+
+  // 处理云存储头像，获取临时链接
+  processCloudAvatars(teams) {
+    // 处理 cloud:// 开头的路径
+    const cloudAvatars = teams
+      .map(item => item.creatorAvatar)
+      .filter(avatar => avatar && avatar.startsWith('cloud://'));
+
+    if (cloudAvatars.length > 0) {
+      wx.cloud.getTempFileURL({
+        fileList: cloudAvatars,
+        success: (res) => {
+          const urlMap = {};
+          res.fileList.forEach((item, index) => {
+            if (item.status === 0) {
+              urlMap[cloudAvatars[index]] = item.tempFileURL;
+            }
+          });
+
+          const updatedTeams = teams.map(item => {
+            if (item.creatorAvatar && urlMap[item.creatorAvatar]) {
+              return { ...item, creatorAvatar: urlMap[item.creatorAvatar] };
+            }
+            return item;
+          });
+
+          this.setData({
+            teams: updatedTeams,
+            filteredTeams: updatedTeams
+          });
+        },
+        fail: (err) => {
+          console.error('获取云存储头像失败:', err);
+        }
+      });
+    }
+  },
+
+  // 头像加载失败时使用默认头像
+  onAvatarError(e) {
+    const index = e.currentTarget.dataset.index;
+    const teams = this.data.teams;
+    if (teams[index]) {
+      teams[index].creatorAvatar = '/images/default-avatar.svg';
+      this.setData({ teams, filteredTeams: teams });
+    }
   },
 // md是你
   // 跳转到发布页

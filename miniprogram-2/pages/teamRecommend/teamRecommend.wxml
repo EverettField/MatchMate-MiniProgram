@@ -46,7 +46,13 @@
 
       <view class="card-meta">
         <view class="avatar">
-          <image class="avatar-icon" src="{{item.creatorAvatar || '/images/avatar.svg'}}" mode="aspectFit" />
+          <image 
+            class="avatar-icon" 
+            src="{{item.creatorAvatar}}" 
+            mode="aspectFill"
+            binderror="onAvatarError"
+            data-index="{{index}}"
+          />
         </view>
         <view class="meta-text">
           <text class="creator">{{item.creator}}</text>

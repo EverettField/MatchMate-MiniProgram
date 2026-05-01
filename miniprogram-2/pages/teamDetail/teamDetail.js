@@ -99,14 +99,21 @@ Page({
           grade,
           major,
           requiredSkills: parseSkills(teamData.requiredSkills || teamData.tags || teamData.skills),
-          tags: parseSkills(teamData.tags || teamData.skills || teamData.requiredSkills)
+          tags: parseSkills(teamData.tags || teamData.skills || teamData.requiredSkills),
+          // 兼容匹配度字段名
+          matchPercentage: teamData.matchPercentage || teamData.matchRate || teamData.match_score || 0
         };
-        
+
         this.setData({ 
           team: formattedTeam,
           isOwner,
           isApplied: this.data.isApplied
         });
+
+        // 处理云存储头像
+        if (creatorAvatar && creatorAvatar.startsWith('cloud://')) {
+          this.loadAvatarUrl(creatorAvatar);
+        }
       }
     }).catch((err) => {
       if (err.status === 404) {
@@ -198,6 +205,27 @@ Page({
         }
       });
     }
+  },
+
+  // 获取云存储头像的临时链接
+  loadAvatarUrl(fileID) {
+    wx.cloud.getTempFileURL({
+      fileList: [fileID],
+      success: (res) => {
+        if (res.fileList[0].status === 0) {
+          const team = this.data.team;
+          this.setData({
+            team: {
+              ...team,
+              creatorAvatar: res.fileList[0].tempFileURL
+            }
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('获取头像临时链接失败:', err);
+      }
+    });
   },
 
   goBack() {
