@@ -12,19 +12,6 @@
 - 孙照轩（后端）
 - 常顺恺（前端）
 
-## 快速开始
-
-### 后端
-1. 导入项目到 IDEA（Maven 项目）
-2. 创建 MySQL 数据库 `team_db`，执行 `src/main/resources/schema.sql`
-3. 修改 `application.yml` 中的数据库密码
-4. 运行 `TeamApplication.java`
-
-### 前端
-1. 在微信开发者工具中导入 `miniapp` 文件夹（前端同学需自行创建）
-2. 配置 AppID（个人主体）
-3. 开发阶段勾选“不校验合法域名”
-
 ## 需求文档
 https://docs.qq.com/doc/DYVRBVWhqQm9YSVJO?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1
 
