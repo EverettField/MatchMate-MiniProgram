@@ -141,15 +141,17 @@
   width: 89%;
   min-height: 86rpx;
   border-radius: 24rpx;
-
   background: #ffffff;
   border: 1rpx solid #e7eef8;
   font-size: 28rpx;
   color: #243145;
   padding: 0 20rpx;
-  margin-left: 0rpx;
+  margin-left: -10rpx;
   line-height: 86rpx;
   box-sizing: overflow-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .field-input {

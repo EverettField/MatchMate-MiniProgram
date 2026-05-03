@@ -10,14 +10,38 @@ Page({
     skills: [
       { name: 'Java', selected: false },
       { name: 'Python', selected: false },
-      { name: '前端', selected: false },
-      { name: '后端', selected: false },
+      { name: 'C++', selected: false },
+      { name: 'C语言', selected: false },
+      { name: 'JavaScript', selected: false },
+      { name: 'TypeScript', selected: false },
+      { name: 'HTML/CSS', selected: false },
+      { name: '前端开发', selected: false },
+      { name: '后端开发', selected: false },
+      { name: '微信小程序', selected: false },
       { name: 'UI设计', selected: false },
-      { name: '产品经理', selected: false }
+      { name: '产品设计', selected: false },
+      { name: '算法设计', selected: false },
+      { name: '数据结构', selected: false },
+      { name: '数据库设计', selected: false },
+      { name: 'MySQL', selected: false },
+      { name: '论文写作', selected: false },
+      { name: '摄影', selected: false },
+      { name: '视频剪辑', selected: false },
+      { name: '数据分析', selected: false },
+      { name: '机器学习', selected: false },
+      { name: '深度学习', selected: false },
+      { name: '数学建模', selected: false },
+      { name: '英语翻译', selected: false },
+      { name: '演讲表达', selected: false },
+      { name: '团队管理', selected: false },
+      { name: '项目策划', selected: false },
+      { name: '文档撰写', selected: false },
+      { name: '调试排错', selected: false },
+      { name: 'Git版本控制', selected: false }
     ],
     needNum: 3,
-    minNum: 1,
-    maxNum: 6,  // API要求1-6人
+    minNum: 1,//最小人数
+    maxNum: 10,  // 最大人数
     contact: ''
   },
 

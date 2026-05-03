@@ -8,7 +8,7 @@
     <view class="card profile-card">
       <view class="profile-card-top">
         <view class="avatar-wrap" bindtap="onChooseAvatar">
-          <image class="avatar" src="{{avatar}}" mode="aspectFill" />
+          <image class="avatar" src="{{avatar}}" mode="aspectFill" binderror="onAvatarError" />
          
         </view>
         <view class="profile-info">

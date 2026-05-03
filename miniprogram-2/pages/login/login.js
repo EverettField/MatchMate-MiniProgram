@@ -21,10 +21,38 @@ Page({
   // 选择微信头像
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail;
-    this.setData({ 
-      avatar: avatarUrl,
-      canLogin: this.data.nickname.trim().length > 0
-    });
+    
+    // 如果是微信临时文件，需要转换为 Base64
+    if (avatarUrl.startsWith('http://tmp') || avatarUrl.startsWith('wxfile://')) {
+      wx.showLoading({ title: '处理中...' });
+      const fs = wx.getFileSystemManager();
+      fs.readFile({
+        filePath: avatarUrl,
+        encoding: 'base64',
+        success: (res) => {
+          wx.hideLoading();
+          const base64Avatar = `data:image/jpeg;base64,${res.data}`;
+          this.setData({ 
+            avatar: base64Avatar,
+            canLogin: this.data.nickname.trim().length > 0
+          });
+        },
+        fail: (err) => {
+          console.error('头像转换失败:', err);
+          wx.hideLoading();
+          // 转换失败就用原链接
+          this.setData({ 
+            avatar: avatarUrl,
+            canLogin: this.data.nickname.trim().length > 0
+          });
+        }
+      });
+    } else {
+      this.setData({ 
+        avatar: avatarUrl,
+        canLogin: this.data.nickname.trim().length > 0
+      });
+    }
   },
 
   // 输入昵称

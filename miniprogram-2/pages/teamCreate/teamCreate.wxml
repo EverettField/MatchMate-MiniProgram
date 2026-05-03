@@ -36,7 +36,7 @@
           bindinput="onInput"
         />
       </view>
-
+<!-- 
       <view class="field">
         <text class="field-title">项目名称</text>
         <input
@@ -47,7 +47,7 @@
           data-field="projectName"
           bindinput="onInput"
         />
-      </view>
+      </view> -->
 
       <view class="field">
         <text class="field-title">项目描述</text>

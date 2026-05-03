@@ -1,11 +1,6 @@
 // app.js
 App({
   onLaunch() {
-    // 初始化云开发
-    wx.cloud.init({
-      env: 'cloudbase-d7gdmgjwf72f5c088'
-    });
-
     // 初始化本地数据
     if (!wx.getStorageSync('teams')) {
       wx.setStorageSync('teams', []);

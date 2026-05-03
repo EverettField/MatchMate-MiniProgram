@@ -15,30 +15,37 @@ Page({
     phone: '',
     wechat: '',
     bio: '',
-    skills: [{
-        name: 'Java',
-        selected: false
-      },
-      {
-        name: 'Python',
-        selected: false
-      },
-      {
-        name: '前端',
-        selected: false
-      },
-      {
-        name: '后端',
-        selected: false
-      },
-      {
-        name: 'UI设计',
-        selected: false
-      },
-      {
-        name: '产品经理',
-        selected: false
-      }
+    skills: [
+      { name: 'Java', selected: false },
+      { name: 'Python', selected: false },
+      { name: 'C++', selected: false },
+      { name: 'C语言', selected: false },
+      { name: 'JavaScript', selected: false },
+      { name: 'TypeScript', selected: false },
+      { name: 'HTML/CSS', selected: false },
+      { name: '前端开发', selected: false },
+      { name: '后端开发', selected: false },
+      { name: '微信小程序', selected: false },
+      { name: 'UI设计', selected: false },
+      { name: '产品设计', selected: false },
+      { name: '算法设计', selected: false },
+      { name: '数据结构', selected: false },
+      { name: '数据库设计', selected: false },
+      { name: 'MySQL', selected: false },
+      { name: '论文写作', selected: false },
+      { name: '摄影', selected: false },
+      { name: '视频剪辑', selected: false },
+      { name: '数据分析', selected: false },
+      { name: '机器学习', selected: false },
+      { name: '深度学习', selected: false },
+      { name: '数学建模', selected: false },
+      { name: '英语翻译', selected: false },
+      { name: '演讲表达', selected: false },
+      { name: '团队管理', selected: false },
+      { name: '项目策划', selected: false },
+      { name: '文档撰写', selected: false },
+      { name: '调试排错', selected: false },
+      { name: 'Git版本控制', selected: false }
     ],
     weekdays: ['一', '二', '三', '四', '五', '六', '日'],
     periods: ['上午', '下午', '晚上'],
@@ -80,30 +87,10 @@ Page({
       skills,
       timeSlots
     }, () => {
-      // 如果是云存储的 fileID，获取临时链接
-      const avatar = userInfo.avatar;
-      if (avatar && avatar.startsWith('cloud://')) {
-        this.loadAvatarUrl(avatar);
-      }
+      // Base64 格式的头像直接使用，无需处理
+      // 云存储的 cloud:// 格式现在不再使用
       this.updateCompletion();
       this.updateDayFullStatus();
-    });
-  },
-
-  // 获取云存储头像的临时链接
-  loadAvatarUrl(fileID) {
-    wx.cloud.getTempFileURL({
-      fileList: [fileID],
-      success: (res) => {
-        if (res.fileList[0].status === 0) {
-          this.setData({
-            avatar: res.fileList[0].tempFileURL
-          });
-        }
-      },
-      fail: (err) => {
-        console.error('获取头像临时链接失败:', err);
-      }
     });
   },
 
@@ -222,33 +209,71 @@ Page({
       sourceType: ['album', 'camera'],
       success: (res) => {
         const tempFilePath = res.tempFiles[0].tempFilePath;
+        const fileSize = res.tempFiles[0].size;
+        const fs = wx.getFileSystemManager();
 
-        wx.showLoading({ title: '上传中...' });
+        // 处理图片：转为 Base64 并检查大小
+        const processImage = (filePath, retryCount = 0) => {
+          wx.showLoading({ title: '处理中...' });
+          fs.readFile({
+            filePath: filePath,
+            encoding: 'base64',
+            success: (readRes) => {
+              const base64Data = readRes.data;
+              const base64Size = base64Data.length;
 
-        // 上传到云存储
-        const cloudPath = `avatars/${Date.now()}_${Math.random().toString(36).substr(2, 9)}.jpg`;
-        wx.cloud.uploadFile({
-          cloudPath: cloudPath,
-          filePath: tempFilePath,
-          success: (uploadRes) => {
-            wx.hideLoading();
-            this.setData({
-              avatar: uploadRes.fileID
-            });
-            wx.showToast({
-              title: '上传成功',
-              icon: 'success'
-            });
-          },
-          fail: (err) => {
-            wx.hideLoading();
-            console.error('上传失败:', err);
-            wx.showToast({
-              title: '上传失败',
-              icon: 'none'
-            });
-          }
-        });
+              // 如果 Base64 超过 500KB，再次压缩
+              if (base64Size > 500 * 1024 && retryCount < 2) {
+                wx.hideLoading();
+                wx.showLoading({ title: '继续压缩...' });
+                wx.compressImage({
+                  src: filePath,
+                  quality: 50 - (retryCount * 20),  // 递减质量: 50 -> 30 -> 10
+                  success: (compressRes) => {
+                    // 递归处理，retryCount + 1
+                    processImage(compressRes.tempFilePath, retryCount + 1);
+                  },
+                  fail: () => {
+                    wx.hideLoading();
+                    wx.showToast({ title: '压缩失败，请换张图片', icon: 'none' });
+                  }
+                });
+              } else if (base64Size > 500 * 1024) {
+                // 压缩次数用完还是太大
+                wx.hideLoading();
+                wx.showToast({ title: '图片太大，请换张小的', icon: 'none' });
+              } else {
+                // 成功
+                wx.hideLoading();
+                const base64Avatar = `data:image/jpeg;base64,${base64Data}`;
+                this.setData({ avatar: base64Avatar });
+                wx.showToast({ title: '上传成功', icon: 'success' });
+              }
+            },
+            fail: () => {
+              wx.hideLoading();
+              wx.showToast({ title: '处理失败', icon: 'none' });
+            }
+          });
+        };
+
+        // 如果图片大于 500KB，先压缩
+        if (fileSize > 500 * 1024) {
+          wx.showLoading({ title: '压缩中...' });
+          wx.compressImage({
+            src: tempFilePath,
+            quality: 80,
+            success: (compressRes) => {
+              processImage(compressRes.tempFilePath);
+            },
+            fail: () => {
+              wx.hideLoading();
+              wx.showToast({ title: '压缩失败', icon: 'none' });
+            }
+          });
+        } else {
+          processImage(tempFilePath);
+        }
       }
     });
   },
@@ -370,6 +395,13 @@ Page({
   goToMyTeams() {
     wx.navigateTo({
       url: '/pages/myTeams/myTeams'
+    });
+  },
+
+  // 头像加载失败时使用默认头像
+  onAvatarError() {
+    this.setData({
+      avatar: '/images/default-avatar.svg'
     });
   }
 });

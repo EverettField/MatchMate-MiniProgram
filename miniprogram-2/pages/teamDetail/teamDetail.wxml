@@ -40,7 +40,7 @@
 
       <!-- 创建者信息 -->
       <view class="creator-card">
-        <image class="avatar" src="{{team.creatorAvatar || '/images/default-avatar.svg'}}" mode="aspectFill" />
+        <image class="avatar" src="{{team.creatorAvatar || '/images/default-avatar.svg'}}" mode="aspectFill" binderror="onAvatarError" />
         <view class="creator-info">
           <text class="creator-name">{{team.creator}}</text>
           <text class="creator-meta">{{team.school || '未填写学校'}}{{team.grade ? ' · ' + team.grade : ''}}</text>

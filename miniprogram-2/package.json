@@ -1,0 +1,12 @@
+{
+  "name": "miniprogram-2",
+  "version": "1.0.0",
+  "description": "��4\u0000.\u00001\u00007\u0000 \u0000 Rd��Nꁚ[IN\u0007h~{\f�\u0018O\u0016S�N�cP��~\u001f��v\u001aYYO\u0007h~{",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

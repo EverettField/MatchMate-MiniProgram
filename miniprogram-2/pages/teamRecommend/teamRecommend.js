@@ -96,8 +96,7 @@ Page({
           isLoading: false
         });
 
-        // 处理云存储头像，获取临时链接
-        this.processCloudAvatars(latestTeams);
+        // 头像现在使用 Base64 格式或默认头像，无需额外处理
       } else {
         // 服务器没有数据，清空列表
         this.setData({ 
@@ -170,43 +169,6 @@ Page({
     wx.navigateTo({
       url: `/pages/teamDetail/teamDetail?id=${id}`
     });
-  },
-
-  // 处理云存储头像，获取临时链接
-  processCloudAvatars(teams) {
-    // 处理 cloud:// 开头的路径
-    const cloudAvatars = teams
-      .map(item => item.creatorAvatar)
-      .filter(avatar => avatar && avatar.startsWith('cloud://'));
-
-    if (cloudAvatars.length > 0) {
-      wx.cloud.getTempFileURL({
-        fileList: cloudAvatars,
-        success: (res) => {
-          const urlMap = {};
-          res.fileList.forEach((item, index) => {
-            if (item.status === 0) {
-              urlMap[cloudAvatars[index]] = item.tempFileURL;
-            }
-          });
-
-          const updatedTeams = teams.map(item => {
-            if (item.creatorAvatar && urlMap[item.creatorAvatar]) {
-              return { ...item, creatorAvatar: urlMap[item.creatorAvatar] };
-            }
-            return item;
-          });
-
-          this.setData({
-            teams: updatedTeams,
-            filteredTeams: updatedTeams
-          });
-        },
-        fail: (err) => {
-          console.error('获取云存储头像失败:', err);
-        }
-      });
-    }
   },
 
   // 头像加载失败时使用默认头像

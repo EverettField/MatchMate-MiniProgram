@@ -109,11 +109,6 @@ Page({
           isOwner,
           isApplied: this.data.isApplied
         });
-
-        // 处理云存储头像
-        if (creatorAvatar && creatorAvatar.startsWith('cloud://')) {
-          this.loadAvatarUrl(creatorAvatar);
-        }
       }
     }).catch((err) => {
       if (err.status === 404) {
@@ -207,33 +202,25 @@ Page({
     }
   },
 
-  // 获取云存储头像的临时链接
-  loadAvatarUrl(fileID) {
-    wx.cloud.getTempFileURL({
-      fileList: [fileID],
-      success: (res) => {
-        if (res.fileList[0].status === 0) {
-          const team = this.data.team;
-          this.setData({
-            team: {
-              ...team,
-              creatorAvatar: res.fileList[0].tempFileURL
-            }
-          });
-        }
-      },
-      fail: (err) => {
-        console.error('获取头像临时链接失败:', err);
-      }
-    });
-  },
-
   goBack() {
     const pages = getCurrentPages();
     if (pages.length > 1) {
       wx.navigateBack();
     } else {
       wx.redirectTo({ url: '/pages/teamRecommend/teamRecommend' });
+    }
+  },
+
+  // 头像加载失败时使用默认头像
+  onAvatarError() {
+    const team = this.data.team;
+    if (team) {
+      this.setData({
+        team: {
+          ...team,
+          creatorAvatar: '/images/default-avatar.svg'
+        }
+      });
     }
   },
 
