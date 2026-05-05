@@ -40,3 +40,6 @@ https://docs.qq.com/sheet/DYVBtWnp5d2FTdGpO?isNewEmptyDoc=1&no_promotion=1&is_bl
 
 ## Bug清单
 https://docs.qq.com/sheet/DYXNhaG9KTnREaGtB?aidPos=list&isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1&tab=BB08J2
+
+## 部署说明
+https://docs.qq.com/doc/DYU5Ma3hUUXJWS2N4?isNewEmptyDoc=1&no_promotion=1&is_blank_or_template=blank&nlc=1
